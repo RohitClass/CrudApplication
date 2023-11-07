@@ -14,6 +14,13 @@ use App\Http\Controllers\admin\CrudApplication;
 */
 
 Route::get('/', function () {
+
     return view('welcome');
 });
-Route::get("/admin" , [CrudApplication::class,"index"]);
+// Route::get("/admin" , [CrudApplication::class,"index"]);
+
+Route::middleware(['admin'])->group(function () {
+    Route::get('/login', [CrudApplication::class, "index"]);
+    Route::get('/submit', [CrudApplication::class, "submit"])->name("submit.submit");
+    Route::get('/dashboard', [CrudApplication::class, "dashboard"]);
+});
