@@ -18,7 +18,16 @@
     @endif
 
         <h2 class="text-primary">Student Records</h2>
-        <a href="{{ route('form.form')}}" class="btn btn-primary my-2 btn-sm">Add Records</a>
+        <div class="d-flex justify-content-between">
+            <a href="{{ route('form.form')}}" class="btn btn-outline-primary my-2 btn-sm p-2 bd-highlight">Add Records</a>
+            <h4 class="p-2 bd-highlight text-primary">
+                @if(isset($auth))
+                <p>Welcome, {{ $auth->name }}!</p>
+            @endif
+        </h4>
+        <a href="{{ route('logout.logout')}}" class="btn btn-outline-danger my-2 btn-sm p-2 bd-highlight">Logout</a>
+        </div>
+
         <table class="table">
             <thead class="thead-dark">
               <tr>
@@ -39,8 +48,8 @@
                 <td>{{ $value->Phone }}</td>
                 <td>{{ $value->Email }}</td>
                 <td>{{ $value->Country }}</td>
-                <td><a href="{{route("edit.edit",$value->id)}}" class="btn btn-success my-2 btn-sm">Edit</a></td>
-                <td><a href="{{route("delete.delete",$value->id)}}" class="btn btn-danger my-2 btn-sm">Delete</a></td>
+                <td><a href="{{route("edit.edit",$value->id)}}" class="btn btn-outline-success my-2 btn-sm">Edit</a></td>
+                <td><a href="{{route("delete.delete",$value->id)}}" class="btn btn-outline-danger my-2 btn-sm">Delete</a></td>
               </tr>
               @endforeach
           </table>
