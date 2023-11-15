@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <div class="container mt-5 flote-right">
+    <div class="container mt-2 flote-right">
         @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -39,6 +39,9 @@
               </tr>
             </thead>
             <tbody>
+                @php
+                    $i = 1;
+                @endphp
                 @foreach ($models as $value)
               <tr>
                 <th scope="row">{{ $value->id }}</th>
@@ -51,6 +54,8 @@
               </tr>
               @endforeach
           </table>
+          <div class="mt-5">{{ $models->links('pagination::bootstrap-5') }}</div>
+
     </div>
 
     <script>

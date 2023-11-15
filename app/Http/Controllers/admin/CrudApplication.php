@@ -61,17 +61,17 @@ class CrudApplication extends Controller
     public function dashboard() {
 
         $models = Crud::orderBy("id", "asc")
-                        ->get();
+                        ->paginate(7);
         $data['models'] = $models;
 
         return view("admin.dashboard", $data);
     }
     public function data(Request $request){
 
-        $name=trim($request->name);
+        $name=trim(ucwords($request->name));
         $phone= $request->phone;
         $email= $request->email;
-        $country= $request->country;
+        $country= ucwords($request->country);
 
         $model = new Crud();
         $model->Name = $name;
@@ -111,10 +111,10 @@ class CrudApplication extends Controller
         if (!$model) {
             return redirect()->route('dashbord')->with('error', 'Record not found');
         }
-        $model->name = $request->name;
+        $model->name = ucwords($request->name);
         $model->phone = $request->phone;
         $model->email = $request->email;
-        $model->country = $request->country;
+        $model->country = ucwords($request->country);
         $model->save();
 
         return redirect()->route('dashbord')->with('success', 'Record updated successfully');
