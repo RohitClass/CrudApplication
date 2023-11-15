@@ -33,8 +33,7 @@ class CrudApplication extends Controller
                 $auth = Auth::guard("admin")->user();
 
                 if($auth->role == 2){
-                    $model['auth'] = $auth;
-                    return redirect()->route('dashbord',$model)->with('success', 'Welcome To Dashboard');
+                    return redirect()->route('dashbord')->with('success', 'Welcome To Dashboard');
                 }
                 else{
 
@@ -44,7 +43,7 @@ class CrudApplication extends Controller
 
             }
             else{
-                return redirect()->route('admin.login')->with('error', 'Email! and password! not match');
+                return redirect()->route('admin.login')->with('error', 'Email! and password! does not match');
             }
         }
         else{

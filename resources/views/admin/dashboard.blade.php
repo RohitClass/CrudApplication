@@ -21,9 +21,7 @@
         <div class="d-flex justify-content-between">
             <a href="{{ route('form.form')}}" class="btn btn-outline-primary my-2 btn-sm p-2 bd-highlight">Add Records</a>
             <h4 class="p-2 bd-highlight text-primary">
-                @if(isset($auth))
-                <p>Welcome, {{ $auth->name }}!</p>
-            @endif
+                Welcome, {{ Auth::guard('admin')->user()->name }}!
         </h4>
         <a href="{{ route('logout.logout')}}" class="btn btn-outline-danger my-2 btn-sm p-2 bd-highlight">Logout</a>
         </div>
